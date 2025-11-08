@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://fb27g4i45gam"]
+[gd_scene load_steps=7 format=3 uid="uid://fb27g4i45gam"]
 
 [ext_resource type="Script" uid="uid://csil7tbjbn4tq" path="res://src/player/player.gd" id="1_4anbu"]
 [ext_resource type="PackedScene" uid="uid://0ag4v8s8jiwn" path="res://src/component/player_input_synchronizer_component.tscn" id="2_rxibo"]
+[ext_resource type="Texture2D" uid="uid://bm56vbx70nqnl" path="res://src/player/player01.png" id="3_mf2ua"]
+[ext_resource type="Texture2D" uid="uid://iyampso1rxtk" path="res://src/player/ak47.png" id="4_244u8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rxibo"]
 properties/0/path = NodePath(".:global_position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qnmj6"]
-size = Vector2(18, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4anbu"]
 
@@ -17,14 +16,29 @@ size = Vector2(18, 32)
 collision_layer = 0
 script = ExtResource("1_4anbu")
 
-[node name="PlayerInputSynchronizerComponent" parent="." instance=ExtResource("2_rxibo")]
+[node name="PlayerInputSynchronizerComponent" parent="." node_paths=PackedStringArray("aim_root") instance=ExtResource("2_rxibo")]
+aim_root = NodePath("../WeaponRoot")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rxibo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-texture = SubResource("PlaceholderTexture2D_qnmj6")
+scale = Vector2(1.8800001, 1.8800001)
+texture = ExtResource("3_mf2ua")
+centered = false
+offset = Vector2(-13, -24)
+
+[node name="WeaponRoot" type="Node2D" parent="."]
+position = Vector2(4, -6)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponRoot"]
+scale = Vector2(0.9352608, 0.8266497)
+texture = ExtResource("4_244u8")
+centered = false
+offset = Vector2(-6, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -14.936687)
+scale = Vector2(1.7199996, 1.7199996)
 shape = SubResource("CircleShape2D_4anbu")
