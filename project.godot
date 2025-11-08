@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2dfps_demo"
-run/main_scene="uid://q6hvr2r8w212"
+run/main_scene="uid://bi8j4u54huxic"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://src/icon.svg"
 
